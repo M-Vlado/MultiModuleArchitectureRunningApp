@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="virtual_ocr">Virtual OCR</string>
+    <string name="logo">logo</string>
+    <string name="running_history">Running history</string>
+    <string name="duration">Duration</string>
+    <string name="distance">Distance</string>
+    <string name="obstacles_run_data_card">Obstacles</string>
+    <string name="pace">Pace</string>
+    <string name="ok">OK</string>
+    <string name="grant_permission">Grant permission</string>
+    <string name="permission_required_title">Permission requested</string>
+    <string name="notification_permission_rational_dialog">In order to display the current time as a notification, this app needs your permission for that. Please click on \"OK\" to grant it.</string>
+    <string name="permanently_declined_access_location_permission">Is seems you permanently declined location permission. You can go to the app settings to grant it.</string>
+    <string name="location_permission_rational_dialog">In order to track your location, this app needs your permission for that. Please click on \"OK\" to grant it.</string>
+    <string name="permanently_declined_notification_permission">Is seems you permanently declined notification permission. You can go to the app settings to grant it.</string>
+    <string name="running_is_paused">Running is paused.</string>
+    <string name="resume_or_finish_run">Do you want to resume or finish the run?</string>
+    <string name="resume">Resume</string>
+    <string name="finish">Finish</string>
+    <string name="_50_meters_to_the_next_obstacle">50 meters to the next obstacle</string>
+    <string name="run_finish_tts_info">"You reach %1d kilometers. The run will be continue, until you press stop button."</string>
+</resources>

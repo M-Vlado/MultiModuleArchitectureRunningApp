@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="go_back">Go back.</string>
+    <string name="open_menu">Open menu.</string>
+    <string name="distance_from_start">distance from start</string>
+    <string name="time_of_overcome">time of overcome</string>
+    <string name="obstacle">%1d obstacle</string>
+    <string name="obstacles">%1d obstacles</string>
+
+</resources>

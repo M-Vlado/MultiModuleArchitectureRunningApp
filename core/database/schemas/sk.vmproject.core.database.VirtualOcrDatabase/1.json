@@ -1,0 +1,238 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "b9f06d45863423264e7fa35ed6015fee",
+    "entities": [
+      {
+        "tableName": "type_or_run",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type_of_run_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `distance_in_kilometers` INTEGER NOT NULL, `obstacle_count` INTEGER NOT NULL, PRIMARY KEY(`type_of_run_id`))",
+        "fields": [
+          {
+            "fieldPath": "typeOfRunId",
+            "columnName": "type_of_run_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceInKilometers",
+            "columnName": "distance_in_kilometers",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "obstacleCount",
+            "columnName": "obstacle_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "type_of_run_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "obstacle_for_run_setup",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`obstacle_id` INTEGER NOT NULL, `ordinal_number` INTEGER NOT NULL, `obstacle_type` TEXT NOT NULL, `number_of_reps` INTEGER NOT NULL, `distance_from_start_in_meters` INTEGER NOT NULL, `type_of_run_id` INTEGER NOT NULL, PRIMARY KEY(`obstacle_id`))",
+        "fields": [
+          {
+            "fieldPath": "obstacleId",
+            "columnName": "obstacle_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordinalNumber",
+            "columnName": "ordinal_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "obstacleType",
+            "columnName": "obstacle_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberOfReps",
+            "columnName": "number_of_reps",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceFromStartInMeters",
+            "columnName": "distance_from_start_in_meters",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeOfRunId",
+            "columnName": "type_of_run_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "obstacle_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "finished_run",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`finished_run_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `duration_in_millis` INTEGER NOT NULL, `distance_in_meters` INTEGER NOT NULL, `date_time_utc` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `avg_speed_in_kmh` REAL NOT NULL, `max_speed_in_kmh` REAL NOT NULL, `total_elevation_in_meters` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "finishedRunId",
+            "columnName": "finished_run_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "durationInMillis",
+            "columnName": "duration_in_millis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceInMeters",
+            "columnName": "distance_in_meters",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateTimeUtc",
+            "columnName": "date_time_utc",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgSpeedInKmh",
+            "columnName": "avg_speed_in_kmh",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxSpeedInKmh",
+            "columnName": "max_speed_in_kmh",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalElevationInMeters",
+            "columnName": "total_elevation_in_meters",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "finished_run_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "obstacle_overcome",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`obstacle_overcome_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ordinal_number` INTEGER NOT NULL, `obstacle_type` TEXT NOT NULL, `number_of_reps` INTEGER NOT NULL, `distance_from_start_in_meters` INTEGER NOT NULL, `latitude` REAL, `longitude` REAL, `obstacle_reach_in_time_in_millis` INTEGER, `finished_run_id` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "obstacleOvercomeId",
+            "columnName": "obstacle_overcome_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordinalNumber",
+            "columnName": "ordinal_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "obstacleType",
+            "columnName": "obstacle_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberOfReps",
+            "columnName": "number_of_reps",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceFromStartInMeters",
+            "columnName": "distance_from_start_in_meters",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "obstacleReachTimeInMillis",
+            "columnName": "obstacle_reach_in_time_in_millis",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "finishedRunId",
+            "columnName": "finished_run_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "obstacle_overcome_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b9f06d45863423264e7fa35ed6015fee')"
+    ]
+  }
+}

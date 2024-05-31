@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_disk_full">Failed to save the item because your disk is full.</string>
+    <string name="error_unknown">An unknown error occurred.</string>
+</resources>
