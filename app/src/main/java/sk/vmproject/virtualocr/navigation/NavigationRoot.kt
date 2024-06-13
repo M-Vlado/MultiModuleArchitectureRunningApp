@@ -13,6 +13,7 @@ import androidx.navigation.navigation
 import sk.vmproject.run.presentation.active_run.ActiveRunScreenRoot
 import sk.vmproject.run.presentation.active_run.service.ActiveRunService
 import sk.vmproject.run.presentation.main_runs.MainRunsScreenRoot
+import sk.vmproject.run.presentation.overview_runs.OverviewRunsScreenRoot
 import sk.vmproject.virtualocr.MainActivity
 
 @Composable
@@ -36,7 +37,13 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
             route = Screen.MainRunsScreen.route
         ) {
             MainRunsScreenRoot(
-                onMenuItemClick = { },
+                onMenuItemClick = { itemId ->
+                    when (itemId) {
+                        0 -> {
+                            navController.navigate(Screen.OverviewScreen.route)
+                        }
+                    }
+                },
                 onRunSelected = { runId ->
                     navController.navigate(Screen.ActiveRunScreen.routeWithParams(runId = runId))
                 }
@@ -84,6 +91,19 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
                         )
                     }
                 }
+            )
+        }
+
+        composable(
+            route = Screen.OverviewScreen.route
+        ) {
+            OverviewRunsScreenRoot(
+                onBackClick = {
+                    if (navController.previousBackStackEntry != null) {
+                        navController.navigateUp()
+                    }
+                },
+                onRunItemClick = {}
             )
         }
     }

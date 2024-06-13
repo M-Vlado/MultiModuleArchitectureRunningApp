@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import sk.vmproject.core.domain.run.model.ObstacleModel
+import kotlin.time.Duration
 
 @Entity(tableName = "obstacle_overcome")
 data class ObstacleOvercomeEntity(
@@ -30,5 +31,18 @@ fun ObstacleModel.toObstacleOvercomeEntity(belongToRunId: Long): ObstacleOvercom
         longitude = this.longitude,
         obstacleReachTimeInMillis = this.obstacleReachTimeStamp?.inWholeMilliseconds,
         finishedRunId = belongToRunId
+    )
+}
+
+fun ObstacleOvercomeEntity.toObstacleModel(): ObstacleModel {
+    return ObstacleModel(
+        obstacleId = this.obstacleOvercomeId,
+        ordinalNumber = this.ordinalNumber,
+        obstacleType = this.obstacleType,
+        numberOfReps = this.numberOfReps,
+        distanceFromStartInMeters = this.distanceFromStartInMeters,
+        latitude = this.latitude,
+        longitude = this.longitude,
+        obstacleReachTimeStamp = Duration.parse(this.obstacleReachTimeInMillis.toString()),
     )
 }

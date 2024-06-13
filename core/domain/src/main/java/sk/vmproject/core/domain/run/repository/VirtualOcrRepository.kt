@@ -1,6 +1,8 @@
 package sk.vmproject.core.domain.run.repository
 
+import kotlinx.coroutines.flow.Flow
 import sk.vmproject.core.domain.run.model.FinishedRunModel
+import sk.vmproject.core.domain.run.model.FinishedRunWithObstaclesModel
 import sk.vmproject.core.domain.run.model.ObstacleModel
 import sk.vmproject.core.domain.run.model.RunWithObstaclesModel
 import sk.vmproject.core.domain.run.model.TypeOfRunModel
@@ -22,4 +24,8 @@ interface VirtualOcrRepository {
         obstacles: List<ObstacleModel>,
         belongToRunId: Long
     ): Result<List<ObstacleId>, DataError.Local>
+
+    fun getAllFinishedRuns(): Flow<List<FinishedRunModel>>
+
+    fun getFinishedRunWithObstacles(finishedRunId: Long): Flow<List<FinishedRunWithObstaclesModel>>
 }

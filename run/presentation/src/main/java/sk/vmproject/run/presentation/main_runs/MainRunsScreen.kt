@@ -24,7 +24,7 @@ import sk.vmproject.run.presentation.main_runs.components.RunCard
 
 @Composable
 fun MainRunsScreenRoot(
-    onMenuItemClick: () -> Unit,
+    onMenuItemClick: (itemId: Int) -> Unit,
     onRunSelected: (runId: Long) -> Unit,
     viewModel: MainRunsViewModel = koinViewModel()
 ) {
@@ -32,7 +32,10 @@ fun MainRunsScreenRoot(
         state = viewModel.state,
         onAction = { action ->
             when (action) {
-                MainRunsAction.OnMenuItemClick -> {}
+                is MainRunsAction.OnMenuItemClick -> {
+                    onMenuItemClick(action.itemId)
+                }
+
                 is MainRunsAction.OnRunClick -> {
                     onRunSelected(action.runId)
                 }
@@ -69,7 +72,7 @@ private fun MainRunsScreen(
                     )
                 ),
                 onMenuItemClick = {
-
+                    onAction(MainRunsAction.OnMenuItemClick(itemId = it))
                 }
             )
         }

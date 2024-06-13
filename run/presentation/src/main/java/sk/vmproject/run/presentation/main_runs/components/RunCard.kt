@@ -1,7 +1,8 @@
 package sk.vmproject.run.presentation.main_runs.components
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,15 +10,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -25,8 +29,9 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import sk.vmproject.core.presentation.designsystem.VirtualOCRTheme
 import sk.vmproject.core.presentation.designsystem.VirtualOcrAzure
-import sk.vmproject.core.presentation.designsystem.VirtualOcrAzure30
+import sk.vmproject.core.presentation.designsystem.VirtualOcrAzure10
 import sk.vmproject.core.presentation.designsystem.components.GradientBackground
+import sk.vmproject.run.presentation.components.SelectCardImage
 
 @Composable
 fun RunCard(
@@ -40,13 +45,59 @@ fun RunCard(
 
     val context = LocalContext.current
 
-    OutlinedCard(
-        onClick = { onClick(id) },
-        colors = CardDefaults.outlinedCardColors(
-            containerColor = VirtualOcrAzure30.copy(alpha = 0.15f),
-        ),
-        border = BorderStroke(1.dp, color = VirtualOcrAzure),
+    val configuration = LocalConfiguration.current
+    val density = LocalDensity.current
+
+    val screenWidthPx = with(density) {
+        configuration.screenWidthDp.dp.roundToPx()
+    }
+
+    val smallDimension = minOf(
+        configuration.screenWidthDp.dp,
+        configuration.screenHeightDp.dp
+    )
+    val smallDimensionPx = with(density) {
+        smallDimension.roundToPx()
+    }
+    Column(
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Top,
         modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
+            .background(
+                brush = Brush.radialGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.onPrimary,
+                        MaterialTheme.colorScheme.primary,
+                        MaterialTheme.colorScheme.onPrimary,
+                    ),
+                    center = Offset(
+                        x = screenWidthPx / 8f,
+                        y = 80f
+                    ),
+                    radius = smallDimensionPx / 3.5f
+                )
+            )
+            .background(
+                brush = Brush.linearGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.primary,
+                        VirtualOcrAzure10
+                    ),
+                    start = Offset(x = 100f, y = 0f)
+                ),
+                alpha = 0.2f
+            )
+            .border(
+                width = 1.dp,
+                color = VirtualOcrAzure,
+                shape = RoundedCornerShape(8.dp)
+            )
+            .padding(horizontal = 10.dp, vertical = 4.dp)
+            .clickable {
+                onClick(id)
+            }
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -89,20 +140,6 @@ fun RunCard(
     }
 }
 
-@Composable
-private fun SelectCardImage(title: String, modifier: Modifier = Modifier) {
-    val image = when (title) {
-        "EASY" -> sk.vmproject.core.presentation.designsystem.R.drawable.runner_red
-        "MEDIUM" -> sk.vmproject.core.presentation.designsystem.R.drawable.runner_blue
-        "HARD" -> sk.vmproject.core.presentation.designsystem.R.drawable.runner_green
-        else -> sk.vmproject.core.presentation.designsystem.R.drawable.runner_purple
-    }
-    Image(
-        painter = painterResource(id = image),
-        contentDescription = null,
-        modifier = modifier
-    )
-}
 
 @Preview
 @Composable

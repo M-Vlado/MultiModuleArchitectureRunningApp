@@ -173,31 +173,36 @@ class ActiveRunViewModel(
 
             ActiveRunAction.OnToggleRunClick -> {
                 if (!state.hasStartedRunning) {
-                    viewModelScope.launch {
-                        var countDown = 3
-                        while (countDown > 0) {
+                    if (!state.isCountDownActive) {
+                        viewModelScope.launch {
+                            var countDown = 3
+                            while (countDown > 0) {
+                                state = state.copy(
+                                    countDownLabel = countDown.toString(),
+                                    isCountDownActive = true
+                                )
+                                textToSpeechController.startSpeech(countDown.toString())
+                                delay(800)
+                                state = state.copy(
+                                    countDownLabel = null
+                                )
+                                delay(200)
+                                countDown--
+                            }
                             state = state.copy(
-                                countDownLabel = countDown.toString()
+                                hasStartedRunning = true,
+                                shouldTrack = !state.shouldTrack,
+                                countDownLabel = "GO"
                             )
-                            textToSpeechController.startSpeech(countDown.toString())
-                            delay(800)
+                            textToSpeechController.startSpeech("Go!")
+                            delay(500)
                             state = state.copy(
-                                countDownLabel = null
+                                countDownLabel = null,
+                                isCountDownActive = false
                             )
-                            delay(200)
-                            countDown--
                         }
-                        state = state.copy(
-                            hasStartedRunning = true,
-                            shouldTrack = !state.shouldTrack,
-                            countDownLabel = "GO"
-                        )
-                        textToSpeechController.startSpeech("Go!")
-                        delay(500)
-                        state = state.copy(
-                            countDownLabel = null
-                        )
                     }
+
                 } else {
                     state = state.copy(
                         hasStartedRunning = true,
@@ -217,6 +222,8 @@ class ActiveRunViewModel(
         viewModelScope.launch {
             val finishedRun = FinishedRunModel(
                 finishedRunId = null,
+                levelType = state.runWithObstacles!!.title,
+                obstacleCount = state.runWithObstacles!!.obstacleCount,
                 duration = state.elapsedTime,
                 distanceInMeters = state.runData.distanceMeters,
                 dateTimeUtc = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("UTC")),

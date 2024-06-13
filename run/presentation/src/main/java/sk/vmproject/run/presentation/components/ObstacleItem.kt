@@ -1,4 +1,4 @@
-package sk.vmproject.core.presentation.designsystem.components
+package sk.vmproject.run.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
