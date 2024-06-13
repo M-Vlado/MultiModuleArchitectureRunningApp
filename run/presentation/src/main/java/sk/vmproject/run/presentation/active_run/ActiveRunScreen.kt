@@ -45,7 +45,6 @@ import sk.vmproject.core.presentation.designsystem.StopIcon
 import sk.vmproject.core.presentation.designsystem.VirtualOCRTheme
 import sk.vmproject.core.presentation.designsystem.VirtualOcrBlack
 import sk.vmproject.core.presentation.designsystem.VirtualOcrGray
-import sk.vmproject.core.presentation.designsystem.components.ObstacleItem
 import sk.vmproject.core.presentation.designsystem.components.VirtualOcrDialog
 import sk.vmproject.core.presentation.designsystem.components.VirtualOcrScaffold
 import sk.vmproject.core.presentation.designsystem.components.VirtualOcrToolbar
@@ -60,6 +59,7 @@ import sk.vmproject.run.presentation.active_run.components.PermissionDialog
 import sk.vmproject.run.presentation.active_run.components.VirtualOcrFloatingActionButton
 import sk.vmproject.run.presentation.active_run.maps.TrackerMap
 import sk.vmproject.run.presentation.active_run.service.ActiveRunService
+import sk.vmproject.run.presentation.components.ObstacleItem
 import sk.vmproject.run.presentation.util.hasLocationPermission
 import sk.vmproject.run.presentation.util.hasNotificationPermission
 import sk.vmproject.run.presentation.util.openAppSetting

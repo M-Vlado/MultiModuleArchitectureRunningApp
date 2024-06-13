@@ -7,4 +7,6 @@ sealed class Screen(val route: String) {
             return "active_run_screen/$runId"
         }
     }
+
+    data object OverviewScreen : Screen(route = "overview_screen")
 }

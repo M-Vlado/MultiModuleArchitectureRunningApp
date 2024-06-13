@@ -3,7 +3,7 @@ package sk.vmproject.core.domain.run.model
 import java.time.ZonedDateTime
 import kotlin.time.Duration
 
-data class FinishedRunModel(
+data class FinishedRunWithObstaclesModel(
     val finishedRunId: Long?,
     val levelType: String,
     val obstacleCount: Int,
@@ -15,4 +15,5 @@ data class FinishedRunModel(
     val avgSpeedInKmh: Double,
     val maxSpeedInKmh: Double,
     val totalElevationInMeters: Int,
+    val obstacles: List<ObstacleModel>,
 )

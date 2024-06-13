@@ -16,6 +16,7 @@ data class ActiveRunState(
     val showLocationRationale: Boolean = false,
     val showNotificationRationale: Boolean = false,
     val countDownLabel: String? = null,
+    val isCountDownActive: Boolean = false,
     val showTTSInitErrorDialog: Boolean? = null,
     val showTTSLanguageErrorDialog: Boolean? = null,
 )

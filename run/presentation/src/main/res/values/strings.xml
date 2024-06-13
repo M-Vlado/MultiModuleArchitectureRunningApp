@@ -20,4 +20,5 @@
     <string name="finish">Finish</string>
     <string name="_50_meters_to_the_next_obstacle">50 meters to the next obstacle</string>
     <string name="run_finish_tts_info">"You reach %1d kilometers. The run will be continue, until you press stop button."</string>
+    <string name="no_finished_runs_to_display">No finished runs to display!</string>
 </resources>
